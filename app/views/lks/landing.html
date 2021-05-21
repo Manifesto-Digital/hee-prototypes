@@ -7,6 +7,15 @@
   {{ super() }}
 {% endblock %}
 
+
+
+
+{% block cookiebanner %}
+
+<h1>werliknwerlovin</h1>
+{{ cookiebanner() }}
+{% endblock %}
+
 {% block content %}
 
 <div class="nhsuk-grid-row">
@@ -18,18 +27,31 @@
 
 <ul class="nhsuk-grid-row nhsuk-card-group">
   <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-    {{ card({
+   {{ card({
       "href": "/content",
       "clickable": "true",
       "heading": "Content",
       "headingLevel": "2",
       "headingClasses": "nhsuk-heading-m",
       "description": "Example of a 'content' page"
-    }) }}
+    }) }} 
   </li>
+  
   <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
     {{ card({
-      "href": "/listing",
+      "href": "/cookie-banner",
+      "clickable": "true",
+      "heading": "Cookie Banner",
+      "headingLevel": "2",
+      "headingClasses": "nhsuk-heading-m",
+      "description": "Example 'Cookie Banner"
+    }) }}
+  </li>
+
+
+<li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    {{ card({
+      "href": "/listings",
       "clickable": "true",
       "heading": "Listing",
       "headingLevel": "2",
@@ -37,5 +59,7 @@
       "description": "Example 'listings' page"
     }) }}
   </li>
+
+
 </ul>
 {% endblock %}
