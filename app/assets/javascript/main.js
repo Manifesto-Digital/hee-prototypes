@@ -3,6 +3,39 @@
  * All the custom JavaScript for the HEE NHS website are included in this file
  */
 
+/*
+To import individual js files from Components
+  require('/js/components/filter.js', '.nhsuk-filter');
+*/
+
+/* ====== Common functions ====== */
+
+function heeShow(item){
+  document.querySelector(item).style.display = "block"
+}
+
+function heeHide(item){
+  document.querySelector(item).style.display = "none"
+}
+
+
+/* ====== Cookies ====== */
+(function() {
+	if (localStorage.getItem('analyticsCookie') === null) {
+    heeShow('.nhsuk-cookie-banner')
+		document.querySelector('#nhsuk-cookie-banner__link_accept_analytics').onclick = function(e) {
+			e.preventDefault();
+      heeHide('.nhsuk-cookie-banner')
+			localStorage.setItem('analyticsCookie', true);
+		};
+		document.querySelector('#nhsuk-cookie-banner__link_decline_analytics').onclick = function(e) {
+			e.preventDefault();
+      heeHide('.nhsuk-cookie-banner')
+			localStorage.setItem('analyticsCookie', false);
+		};
+	}
+})();
+
 /**
  * Filter
  * Elements with the selector '.nhsuk-filter' are passed into this class

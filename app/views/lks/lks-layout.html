@@ -4,6 +4,10 @@
 {% endblock %}
 
 {% block header %}
+{% endblock %}
+
+{% block bodyStart %}
+  {{ cookies() }}
   {{ customHeader() }}
 
   {{ emergencyAlert({
