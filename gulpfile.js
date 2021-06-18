@@ -55,6 +55,7 @@ function compileAssets() {
   return gulp.src([
     'app/assets/**/**/*.*',
     'docs/assets/**/**/*.*',
+    'app/assets/components/**/*.*',
     '!**/assets/**/**/*.js', // Don't copy JS files
     '!**/assets/**/**/*.scss', // Don't copy SCSS files
   ])
@@ -113,6 +114,7 @@ function watch() {
   gulp.watch('app/assets/**/**/*.scss', compileStyles);
   gulp.watch('app/assets/javascript/**/*.js', compileScripts);
   gulp.watch('app/assets/**/**/*.*', compileAssets);
+  gulp.watch('app/assets/components/**/*.njk', compileAssets);
   gulp.watch('docs/assets/sass/**/*.scss', compileStyles);
   gulp.watch('docs/assets/javascript/**/*.js', compileScripts);
   gulp.watch('docs/assets/**/**/*.*', compileAssets);
