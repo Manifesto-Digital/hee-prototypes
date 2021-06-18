@@ -1,0 +1,296 @@
+/* ==========================================================================
+   COMPONENTS / #HEADER
+   ========================================================================== */
+
+/**
+ * The behaviour with regards to responsiveness is as follow:
+ *
+ * - Mobile to tablet view
+ *   Menu toggle button visible and navigation links hidden, search toggle
+     button visible and search form hidden
+ *
+ * - Tablet to desktop view
+ *   Menu toggle button visible and navigation links hidden, search toggle
+ *   button hidden and search form visible
+ *
+ * - Desktop+ view
+ *   Menu toggle button hidden and navigation links visible, search toggle
+ *   button hidden and search form visible
+ *
+ * 1. Custom height and width of the logo
+ * 2. Custom height and width of form items
+ * 3. Custom height and width of svg icons
+ * 4. Remove inner border on buttons for Firefox, see
+ *    https://github.com/necolas/normalize.css/issues/393
+ * 5. Proprietary extension so form field looks the same in Safari
+ * 6. Needs !important because typeahead js adds inline styling so need to
+ *    override
+ * 7. Custom spacing to position the search icon
+ * 8. Drop shadow on search suggestions dopdown box, custom spread and blur
+ * 9. No current spacing at 12px so using this value
+ * 10. Z-index to bring the dropdown to the front
+ * 11. Custom margin to move menu toggle past the search toggle button
+ * 12. Custom border value between expanded search and expanded menu if both open at the same time
+ * 13. Don't display the link address for the logo anchor, see
+ *     core/elements/_links.scss
+ * 14. IE 10 prefix for flexbox
+ * 15. IE 9 alternative for flexbox
+ * 16. Use non variable colour to follow NHS England guidelines on logo colour
+ * 17. On print stylesheets remove the header link
+ * 18. Remove random top margin in Safari
+ * 19. Align close icon with nav item arrow icons
+ * 20. Add nhsuk-spacing(9) to align right and left main nav with header
+ */
+
+
+/* Main navigation
+ *
+ * Appears below the header strip
+   ====================================================================== */
+
+.nhsuk-header__navigation {
+  overflow: visible;
+}
+
+.nhsuk-header__navigation-close {
+  @include close-button();
+  overflow: hidden;
+  position: absolute;
+  right: nhsuk-spacing(2);
+  top: nhsuk-spacing(2);
+  white-space: nowrap;
+
+  &:focus {
+    .nhsuk-icon__close {
+      fill: $nhsuk-focus-text-color;
+    }
+  }
+}
+
+.nhsuk-header__navigation-list { 
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  &.submenu-open {
+    .nhsuk-header__navigation-item {
+      display: none;
+    }
+
+    .is-active {
+      display: block;
+
+      .nhsuk-header__link-text,
+      .nhsuk-icon__chevron-right {
+        display: none;
+      }
+      .nhsuk-header__back-text,
+      .nhsuk-icon__chevron-left {
+        display: inline;
+      }
+
+      .nhsuk-subheader__list { 
+        display: block;
+      }
+    }
+  }
+
+}
+
+.nhsuk-header__navigation-item {
+  display: flex;
+  align-items: center;
+
+  .nhsuk-icon {
+    display: none;
+  }
+
+}
+
+.nhsuk-header__navigation-link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+
+.nhsuk-subheader {
+  .nhsuk-subheader__list { 
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    z-index: 1;
+  }
+
+  .nhsuk-subheader-item {
+    margin-bottom: 0;
+    border-top: 1px solid #f0f4f5;
+
+    .nhsuk-subheader-link {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 16px;
+      text-decoration: none;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 400;
+      border-bottom: 4px solid transparent;
+      border-top: 4px solid transparent;
+      color: #005eb8;
+
+      &:visited {
+        color: $nhsuk-link-color;
+        text-decoration: none;
+      }
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+      &:focus {
+        color: $nhsuk-focus-text-color
+      }
+    }
+
+  }
+
+  .nhsuk-header__navigation-link {
+    padding-right: nhsuk-spacing(6);
+    .nhsuk-icon {
+      display: block;
+      pointer-events: none;
+    }
+    .nhsuk-icon__chevron-left {
+      display: none;
+      position: absolute;
+      top: 11px;
+      right: 4px;
+    }
+  }
+
+  .nhsuk-header__back-text {
+    display: none;
+  }
+
+  &:active {
+    .nhsuk-icon {
+      fill: $nhsuk-focus-text-color;
+    }
+    &:hover {
+      .nhsuk-icon {
+        fill: $nhsuk-focus-text-color;
+      }
+    }
+  }
+
+}
+
+.nhsuk-header__navigation-item:last-child {
+  .nhsuk-subheader__list {
+    left: auto; 
+    right: 0;
+  }
+}
+
+.nhsuk-subheader__item {
+  margin-bottom: 1rem;
+}
+
+
+/**
+ * Large desktop styles
+**/
+
+@include mq($from: large-desktop) {
+
+  .nhsuk-header__navigation-list.submenu-open {
+
+    .nhsuk-header__navigation-item {
+      display: flex;
+    }
+
+    .nhsuk-header__navigation-item--for-mobile {
+      display: none;
+    }
+
+}
+
+  .nhsuk-header__navigation-item--for-mobile {
+    display: none;
+  }
+
+  .nhsuk-subheader {
+
+    .nhsuk-header__navigation-link {
+
+      .nhsuk-icon {
+        top: 0;
+        transform: translateY(50%);
+        fill: $color_nhsuk-white;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
+      &:focus {
+        .nhsuk-icon {
+          fill: $nhsuk-focus-text-color;
+        }
+      }
+    }
+
+    .nhsuk-subheader__list { 
+      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      min-width: 16rem;
+      padding: 0;
+      border: 1px solid $color_nhsuk-grey-4;
+      border-bottom-width: nhsuk-spacing(1);
+      background: $color_nhsuk-white;
+    }
+
+    .nhsuk-subheader-link {
+      padding: nhsuk-spacing(2) nhsuk-spacing(3);
+    }
+
+    &:hover,
+    &.is-active {
+
+      .nhsuk-header__navigation-link {
+
+        & > * {
+          pointer-events: none;
+        }
+
+        .nhsuk-header__link-text {
+          display: inline;
+        }
+
+        .nhsuk-icon__chevron-right {
+          display: block;
+          transform: translateY(50%) rotate(90deg); 
+        }
+
+        .nhsuk-header__back-text,
+        .nhsuk-icon__chevron-left {
+          display: none;
+        }
+
+      }
+
+      .nhsuk-subheader__list {
+        display: block; 
+      }
+
+    }
+
+  }
+
+}

@@ -1,4 +1,4 @@
-{%- from 'header/macro.njk' import header %}
+{%- from 'lks-header/macro.njk' import lksHeader %}
 
 <div class="nhsuk-header nhsuk-header--organisation nhsuk-header--parent" role="banner">
   <div class="nhsuk-width-container nhsuk-header__container">
@@ -6,7 +6,7 @@
   </div>
 </div>
 
-{{ header({
+{{ lksHeader({
     "showNav": "true",
     "showSearch": "true",
     "organisation": {
@@ -16,7 +16,25 @@
     "primaryLinks": [
       {
         "url": "/landing",
-        "label": "COVID-19"
+        "label": "COVID-19",
+        "children": [
+          {
+            "url": "/",
+            "label": "Lorem"
+          },
+          {
+            "url": "/",
+            "label": "Ipsum"
+          },
+          {
+            "url": "/",
+            "label": "Dolor Set"
+          },
+          {
+            "url": "/",
+            "label": "Amet"
+          }
+        ]
       },
       {
         "url": "/landing",
@@ -28,15 +46,69 @@
       },
       {
         "url": "/landing",
-        "label": "Patient information"
+        "label": "Patient information",
+         "children": [
+          {
+            "url": "/",
+            "label": "Lorem"
+          },
+          {
+            "url": "/",
+            "label": "Ipsum"
+          },
+          {
+            "url": "/",
+            "label": "Dolor Set"
+          },
+          {
+            "url": "/",
+            "label": "Amet"
+          }
+        ]
       },
       {
         "url": "/landing",
-        "label": "Resource discovery"
-      },
+        "label": "Resource discovery",
+         "children": [
+          {
+            "url": "/",
+            "label": "Lorem"
+          },
+          {
+            "url": "/",
+            "label": "Ipsum"
+          },
+          {
+            "url": "/",
+            "label": "Dolor Set"
+          },
+          {
+            "url": "/",
+            "label": "Amet"
+          }
+        ]
+     },
       {
         "url": "/landing",
-        "label": "About"
+        "label": "About",
+        "children": [
+          {
+            "url": "/",
+            "label": "Lorem"
+          },
+          {
+            "url": "/",
+            "label": "Ipsum"
+          },
+          {
+            "url": "/",
+            "label": "Dolor Set"
+          },
+          {
+            "url": "/",
+            "label": "Amet"
+          }
+        ]
       }
     ]
   })
