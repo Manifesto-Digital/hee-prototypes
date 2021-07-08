@@ -112,13 +112,11 @@
         </div>
       {% endcall %}
 
-      {% call homepageSection() %}
-        <div class="nhsuk-u-reading-width">
-          <h2>Learning</h2>
-          <p>Discover resources and information designed to support you on your learning journey</p>
-        </div>
-
-        {{ signage({
+      {% call homepageSection() %}       
+        {{ blocklinks({
+          "heading": "Learning 2 Columns",
+          "HTML": "<p>Discover resources and information designed to support you on your learning journey</p>",
+          "columns": "2",
           "links": [
             {
               "url": "/listing",
@@ -138,6 +136,31 @@
             }]
           })
         }}
+
+        {{ blocklinks({
+          "heading": "Learning 1 Column",
+          "HTML": "<p>Discover resources and information designed to support you on your learning journey</p>",
+          "columns": "1",
+          "links": [
+            {
+              "url": "/listing",
+              "label": "Learning Zone"
+            },
+            {
+              "url": "/listing",
+              "label": "Equality, Diversity and Inclusion"
+            },
+            {
+              "url": "/listing",
+              "label": "Talent Management Toolkit"
+            },
+            {
+              "url": "/listing",
+              "label": "Case studies"
+            }]
+          })
+        }}
+
       {% endcall %}
 
     </main>
