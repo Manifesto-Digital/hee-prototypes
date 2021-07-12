@@ -126,4 +126,45 @@ class Listing {
   }
 }
 
+/**
+ * Tabs
+ * Elements with the selector '.nhsuk-tabs__list-item' and position are passed into this class
+ */
+ class Tabs {
+  constructor(tab,i) {
+    this.tab = tab;
+    this.pos = i;
+    this.tabs = [...document.getElementsByClassName('nhsuk-tabs__list-item')];
+    this.tabPanels = [...document.getElementsByClassName('nhsuk-tabs__panel')];
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    const query = window.matchMedia('(min-width:40.0625em)');
+    query.onchange = (evt) => {
+      this.tabs.forEach(node => {
+        node.classList.remove('nhsuk-tabs__list-item--selected');
+      });
+      this.tabPanels.forEach(node => {
+        node.classList.add('nhsuk-tabs__panel--hidden');
+      });
+      if( query.matches ) { this.tab.addEventListener('click', evt => this.actionTabClick(evt)); }
+    };
+    query.onchange();    
+  }
+
+  actionTabClick(evt) {
+    evt.preventDefault();
+    this.tabs.forEach(node => {
+      node.classList.remove('nhsuk-tabs__list-item--selected');
+    });
+    evt.currentTarget.classList.add('nhsuk-tabs__list-item--selected');
+    this.tabPanels.forEach(node => {
+      node.classList.add('nhsuk-tabs__panel--hidden');
+    });
+    this.tabPanels[this.pos].classList.remove('nhsuk-tabs__panel--hidden');
+  }
+}
+
 [...document.getElementsByClassName('nhsuk-listing')].forEach(listing => new Listing(listing));
+[...document.getElementsByClassName('nhsuk-tabs__list-item')].forEach((tab,i) => new Tabs(tab,i));
